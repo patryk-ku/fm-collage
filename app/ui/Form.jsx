@@ -1,17 +1,27 @@
 'use client';
-import { Text, TextInput, SegmentedControl, Button } from '@mantine/core';
+import { useRef } from 'react';
+import { Text, TextInput, SegmentedControl, Chip, Button } from '@mantine/core';
 import { hasLength, useForm } from '@mantine/form';
 import { DownloadSimple } from '@phosphor-icons/react';
 import { getTopAlbums } from '@/app/lib/lastfm';
 import { createCollage } from '@/app/lib/collage';
+import { currentDateAsString } from '@/app/lib/utils';
 
 export default function Form({ loadingProps, collageProps, setErrorMessage }) {
 	const { loading, setLoading } = loadingProps;
 	const { collage, setCollage } = collageProps;
+	const formValues = useRef(null);
 
 	const form = useForm({
 		mode: 'uncontrolled',
-		initialValues: { login: '', size: '3', time: '7day' },
+		initialValues: {
+			login: '',
+			size: '3',
+			time: '7day',
+			playcount: false,
+			albumtitle: false,
+			artistname: false,
+		},
 		validate: {
 			login: hasLength({ min: 2 }, 'Must be at least 2 characters'),
 		},
@@ -21,6 +31,7 @@ export default function Form({ loadingProps, collageProps, setErrorMessage }) {
 		event.preventDefault();
 		setCollage(null);
 		setErrorMessage(null);
+		formValues.current = null;
 
 		if (!form.isValid()) {
 			form.validate();
@@ -29,10 +40,10 @@ export default function Form({ loadingProps, collageProps, setErrorMessage }) {
 		}
 
 		setLoading(true);
-		const formValues = form.getValues();
+		formValues.current = form.getValues();
 
 		// fetch data from last.fm api
-		const topAlbums = await getTopAlbums(formValues);
+		const topAlbums = await getTopAlbums(formValues.current);
 		if (topAlbums.error) {
 			setErrorMessage(topAlbums.error);
 			setLoading(false);
@@ -41,7 +52,7 @@ export default function Form({ loadingProps, collageProps, setErrorMessage }) {
 
 		// create collage using canvas
 		try {
-			const image = await createCollage(topAlbums, formValues.size);
+			const image = await createCollage(topAlbums, formValues.current);
 			setCollage(image);
 		} catch (error) {
 			setErrorMessage(error);
@@ -53,7 +64,7 @@ export default function Form({ loadingProps, collageProps, setErrorMessage }) {
 	const handleDownload = () => {
 		const link = document.createElement('a');
 		link.href = collage;
-		link.download = 'collage';
+		link.download = `collage_${formValues.current.login}_${formValues.current.size}x${formValues.current.size}_${formValues.current.time}_${currentDateAsString()}`;
 		link.click();
 		link.remove();
 	};
@@ -177,16 +188,47 @@ export default function Form({ loadingProps, collageProps, setErrorMessage }) {
 							value: 'overall',
 							label: 'overall',
 						},
-						{
-							value: 'custom',
-							label: 'custom',
-							disabled: true,
-						},
 					]}
 				/>
 			</div>
 
+			<div>
+				<Text size='sm' fw={500} mb={3}>
+					Captions
+				</Text>
+				<div className='flex flex-wrap gap-2 sm:flex-nowrap'>
+					<Chip
+						color='violet'
+						// size='xs'
+						radius='lg'
+						key={form.key('playcount')}
+						{...form.getInputProps('playcount')}
+					>
+						playcount
+					</Chip>
+					<Chip
+						color='violet'
+						// size='xs'
+						radius='lg'
+						key={form.key('albumtitle')}
+						{...form.getInputProps('albumtitle')}
+					>
+						album title
+					</Chip>
+					<Chip
+						color='violet'
+						// size='xs'
+						radius='lg'
+						key={form.key('artistname')}
+						{...form.getInputProps('artistname')}
+					>
+						artist name
+					</Chip>
+				</div>
+			</div>
+
 			<div className='mt-4 flex flex-row-reverse items-center gap-3'>
+				{/* TODO: add copy image button */}
 				<Button type='submit' variant='filled' color='indigo' radius='md' loading={loading}>
 					Create Collage
 				</Button>
