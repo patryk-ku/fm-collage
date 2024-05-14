@@ -7,7 +7,7 @@
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint",
-		"export-standalone": "rimraf dist && cpy . '../../../../dist/' --cwd=.next/standalone && cpy . '../../../../dist/.next/static/' --cwd=.next/static && move-file dist/server.js dist/app.js"
+		"export-standalone": "next build && rimraf dist && cpy . '../../../../dist/' --cwd=.next/standalone && cpy . '../../../../dist/.next/static/' --cwd=.next/static && move-file dist/server.js dist/app.js"
 	},
 	"dependencies": {
 		"@mantine/core": "^7.9.1",
