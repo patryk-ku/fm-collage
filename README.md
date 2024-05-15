@@ -2,6 +2,8 @@
 
 Create cover collages of your top albums from last.fm. [Check it out yourself!](https://fm-collage.vercel.app/)
 
+![screenshot](/images/fm-collage-screenshot.png)
+
 This app creates collages entirely on the client side and only uses the server to retrieve data from last.fm without leaking the API key. So the speed of collage creation depends on the performance of the user's hardware and their internet speed. For this reason, the cost of hosting this site is very low.
 
 Created using: [Next.js](https://nextjs.org/) + [TailwindCSS](https://tailwindcss.com/) + [Mantine](https://mantine.dev/) + [Phosphor Icons](https://phosphoricons.com/), and hosted for free on [Vercel](https://vercel.com/).

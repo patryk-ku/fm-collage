@@ -15,13 +15,16 @@ export default function CollageCreator() {
 			<div className='flex flex-col justify-center gap-8'>
 				<div className='text-center'>
 					<Title order={1}>
+						<Text span inherit c='submit.6'>
+							.fm
+						</Text>{' '}
 						<Text
 							span
 							inherit
 							variant='gradient'
-							gradient={{ from: 'red', to: 'indigo', deg: 74 }}
+							gradient={{ from: 'submit.6', to: 'primary.4', deg: 74 }}
 						>
-							.fm Collage Creator
+							Collage Creator
 						</Text>
 					</Title>
 				</div>

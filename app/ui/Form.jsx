@@ -73,7 +73,6 @@ export default function Form({ loadingProps, collageProps, setErrorMessage }) {
 		<form className='flex flex-col gap-3' onSubmit={handleSubmit}>
 			<TextInput
 				variant='filled'
-				radius='md'
 				label='Login'
 				placeholder='Last.fm login'
 				disabled={loading}
@@ -111,8 +110,7 @@ export default function Form({ loadingProps, collageProps, setErrorMessage }) {
 					withItemsBorders={false}
 					fullWidth
 					size='xs'
-					radius='md'
-					color='violet'
+					color='primary'
 					disabled={loading}
 					key={form.key('size')}
 					{...form.getInputProps('size')}
@@ -158,8 +156,7 @@ export default function Form({ loadingProps, collageProps, setErrorMessage }) {
 					withItemsBorders={false}
 					fullWidth
 					size='xs'
-					radius='md'
-					color='violet'
+					color='primary'
 					disabled={loading}
 					key={form.key('time')}
 					{...form.getInputProps('time')}
@@ -198,27 +195,20 @@ export default function Form({ loadingProps, collageProps, setErrorMessage }) {
 				</Text>
 				<div className='flex flex-wrap gap-2 sm:flex-nowrap'>
 					<Chip
-						color='violet'
 						// size='xs'
-						radius='lg'
+						// variant='light'
 						key={form.key('playcount')}
 						{...form.getInputProps('playcount')}
 					>
 						playcount
 					</Chip>
 					<Chip
-						color='violet'
-						// size='xs'
-						radius='lg'
 						key={form.key('albumtitle')}
 						{...form.getInputProps('albumtitle')}
 					>
 						album title
 					</Chip>
 					<Chip
-						color='violet'
-						// size='xs'
-						radius='lg'
 						key={form.key('artistname')}
 						{...form.getInputProps('artistname')}
 					>
@@ -229,14 +219,13 @@ export default function Form({ loadingProps, collageProps, setErrorMessage }) {
 
 			<div className='mt-4 flex flex-row-reverse items-center gap-3'>
 				{/* TODO: add copy image button */}
-				<Button type='submit' variant='filled' color='indigo' radius='md' loading={loading}>
+				<Button type='submit' variant='filled' color='submit.7' loading={loading}>
 					Create Collage
 				</Button>
 				{collage && (
 					<Button
 						variant='filled'
-						color='green'
-						radius='md'
+						color='download.7'
 						leftSection={<DownloadSimple weight='bold' size={20} />}
 						onClick={handleDownload}
 					>
