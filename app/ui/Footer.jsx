@@ -10,9 +10,11 @@ export default function Footer() {
 			<Button
 				component='a'
 				color='gray'
+				variant='light'
 				size='compact-xs'
 				leftSection={<GithubLogo weight='fill' size={14} />}
-				href='https://github.com/patryk-ku'
+				href='https://github.com/patryk-ku/fm-collage'
+				target='_blank'
 			>
 				GitHub
 			</Button>
