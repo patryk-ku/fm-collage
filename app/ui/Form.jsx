@@ -3,10 +3,11 @@ import { useRef } from 'react';
 import { Text, TextInput, SegmentedControl, NumberInput, Chip, Button } from '@mantine/core';
 import { hasLength, useForm } from '@mantine/form';
 import { useLocalStorage, readLocalStorageValue } from '@mantine/hooks';
-import { DownloadSimple } from '@phosphor-icons/react';
+import ButtonDownload from '@/app/ui/ButtonDownload';
+
+// util functions
 import { getTopAlbums } from '@/app/lib/lastfm';
 import { createCollage } from '@/app/lib/collage';
-import { currentDateAsString } from '@/app/lib/utils';
 
 export default function Form({ loadingProps, collageProps, setErrorMessage }) {
 	const { loading, setLoading } = loadingProps;
@@ -77,20 +78,6 @@ export default function Form({ loadingProps, collageProps, setErrorMessage }) {
 		setLoading(false);
 		console.timeEnd('Total');
 		console.groupEnd('New Collage');
-	};
-
-	const handleDownload = () => {
-		const link = document.createElement('a');
-		link.href = collage;
-		let sizeString = '';
-		if (formValues.current.size === 'custom') {
-			sizeString = `${formValues.current.width}x${formValues.current.height}`;
-		} else {
-			sizeString = `${formValues.current.size}x${formValues.current.size}`;
-		}
-		link.download = `collage_${formValues.current.login}_${sizeString}_${formValues.current.time}_${currentDateAsString()}`;
-		link.click();
-		link.remove();
 	};
 
 	const customInputStyles = {
@@ -277,20 +264,10 @@ export default function Form({ loadingProps, collageProps, setErrorMessage }) {
 			</div>
 
 			<div className='mt-4 flex flex-row-reverse items-center gap-3'>
-				{/* TODO: add copy image button */}
 				<Button type='submit' variant='filled' color='submit.7' loading={loading}>
 					Create Collage
 				</Button>
-				{collage && (
-					<Button
-						variant='filled'
-						color='download.7'
-						leftSection={<DownloadSimple weight='bold' size={20} />}
-						onClick={handleDownload}
-					>
-						Download
-					</Button>
-				)}
+				<ButtonDownload formValues={formValues} collage={collage} />
 			</div>
 		</form>
 	);
