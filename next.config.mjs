@@ -5,6 +5,9 @@ const nextConfig = {
 	},
 	// https://nextjs.org/docs/pages/api-reference/next-config-js/output
 	output: 'standalone',
+	compiler: {
+		removeConsole: process.env.NODE_ENV === 'production',
+	},
 };
 
 export default nextConfig;
