@@ -12,7 +12,7 @@ export default function Form({ loadingProps, collageProps, setErrorMessage }) {
 	const { loading, setLoading } = loadingProps;
 	const { collage, setCollage } = collageProps;
 	const formValues = useRef(null);
-	const [localLogin, setLocalLogin] = useLocalStorage({
+	const [, setLocalLogin] = useLocalStorage({
 		key: 'lastfm-login',
 		defaultValue: '',
 	});
@@ -48,17 +48,23 @@ export default function Form({ loadingProps, collageProps, setErrorMessage }) {
 			return;
 		}
 
+		console.time('Total');
+		console.group('New Collage');
 		setLoading(true);
 		formValues.current = form.getValues();
 		setLocalLogin(formValues.current.login);
 
 		// fetch data from last.fm api
+		console.time('Fetching data from API');
 		const topAlbums = await getTopAlbums(formValues.current);
 		if (topAlbums.error) {
 			setErrorMessage(topAlbums.error);
 			setLoading(false);
+			console.timeEnd('Fetching data from API');
+			console.groupEnd('New Collage');
 			return;
 		}
+		console.timeEnd('Fetching data from API');
 
 		// create collage using canvas
 		try {
@@ -69,6 +75,8 @@ export default function Form({ loadingProps, collageProps, setErrorMessage }) {
 			console.log(error);
 		}
 		setLoading(false);
+		console.timeEnd('Total');
+		console.groupEnd('New Collage');
 	};
 
 	const handleDownload = () => {
@@ -169,11 +177,11 @@ export default function Form({ loadingProps, collageProps, setErrorMessage }) {
 						<NumberInput
 							variant='filled'
 							label='Width'
-							placeholder='max 100'
+							placeholder='max 30'
 							allowNegative={false}
 							allowDecimal={false}
 							min={1}
-							max={100}
+							max={30}
 							disabled={loading}
 							key={form.key('width')}
 							{...form.getInputProps('width')}
@@ -182,11 +190,11 @@ export default function Form({ loadingProps, collageProps, setErrorMessage }) {
 						<NumberInput
 							variant='filled'
 							label='Height'
-							placeholder='max 100'
+							placeholder='max 30'
 							allowNegative={false}
 							allowDecimal={false}
 							min={1}
-							max={100}
+							max={30}
 							disabled={loading}
 							key={form.key('height')}
 							{...form.getInputProps('height')}

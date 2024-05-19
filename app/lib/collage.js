@@ -7,6 +7,7 @@ async function fetchImage(url) {
 			resolve({ error: 'Empty url' });
 		}
 
+		// TODO: Increase timemout value for bigger collages
 		// timeout after 15 sec
 		const timeoutId = setTimeout(() => {
 			console.log(`The image took too long to load: ${url}`);
@@ -30,6 +31,25 @@ async function fetchImage(url) {
 	});
 }
 
+const canvasToImgUrl = (canvas, quality = 0.92) => {
+	return new Promise((resolve, reject) => {
+		canvas.toBlob(
+			(blob) => {
+				if (blob) {
+					const url = URL.createObjectURL(blob);
+					console.timeEnd('Canvas to blob');
+					resolve(url);
+				} else {
+					console.timeEnd('Canvas to blob');
+					reject(new Error('Conversion canvas to blob failed.'));
+				}
+			},
+			'image/jpeg',
+			quality
+		);
+	});
+};
+
 function drawTextWithBackground(context, text, x, y, fontHeight) {
 	const textWidth = context.measureText(text).width;
 	const backgroundWidth = textWidth > 280 ? 280 : textWidth;
@@ -42,9 +62,11 @@ function drawTextWithBackground(context, text, x, y, fontHeight) {
 }
 
 export async function createCollage(data, settings) {
+	console.time('Downloading cover images');
 	const urls = data.album.map((album) => album.image[3]['#text']);
 	const images = urls.map((url) => fetchImage(url));
 	const covers = await Promise.all(images);
+	console.timeEnd('Downloading cover images');
 
 	const canvas = document.createElement('canvas');
 
@@ -67,6 +89,7 @@ export async function createCollage(data, settings) {
 	let x = 0,
 		y = 0;
 
+	console.time('Drawing canvas');
 	for (let i = 0; i < covers.length; i++) {
 		if (!covers[i].error) {
 			context.drawImage(covers[i], x, y, 300, 300);
@@ -91,6 +114,9 @@ export async function createCollage(data, settings) {
 			y += 300;
 		}
 	}
+	console.timeEnd('Drawing canvas');
 
-	return canvas.toDataURL('image/jpeg');
+	// return canvas.toDataURL('image/jpeg');
+	console.time('Canvas to blob');
+	return await canvasToImgUrl(canvas);
 }
