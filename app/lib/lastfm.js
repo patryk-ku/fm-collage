@@ -2,11 +2,20 @@
 import 'dotenv/config';
 
 // TODO: rate limit
+// TODO: validation (max limit etc)
 export async function getTopAlbums(args) {
 	const login = encodeURIComponent(args.login);
 	const time = encodeURIComponent(args.time);
-	const size = Number(encodeURIComponent(args.size));
-	const limit = size * size;
+	const size = encodeURIComponent(args.size);
+
+	let limit = 0;
+	if (size === 'custom') {
+		const height = Number(encodeURIComponent(args.height));
+		const width = Number(encodeURIComponent(args.width));
+		limit = height * width;
+	} else {
+		limit = Number(size) * Number(size);
+	}
 
 	let topAlbums;
 	try {

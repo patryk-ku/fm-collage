@@ -11,7 +11,7 @@ export default function CollageCreator() {
 	const [collage, setCollage] = useState(null);
 
 	return (
-		<div className='grid grid-cols-[96vw] gap-8 sm:max-w-[900px] md:grid-cols-[min-content_1fr] md:gap-12'>
+		<div className='grid grid-cols-[96vw] gap-8 sm:max-w-[1000px] sm:items-center md:grid-cols-[min-content_1fr] md:gap-12'>
 			<div className='flex flex-col justify-center gap-8'>
 				<div className='text-center'>
 					<Title order={1}>

@@ -47,8 +47,14 @@ export async function createCollage(data, settings) {
 	const covers = await Promise.all(images);
 
 	const canvas = document.createElement('canvas');
-	canvas.width = Number(settings.size) * 300;
-	canvas.height = Number(settings.size) * 300;
+
+	if (settings.size === 'custom') {
+		canvas.width = Number(settings.width) * 300;
+		canvas.height = Number(settings.height) * 300;
+	} else {
+		canvas.width = Number(settings.size) * 300;
+		canvas.height = Number(settings.size) * 300;
+	}
 	const context = canvas.getContext('2d');
 
 	const fontSize = 20;
