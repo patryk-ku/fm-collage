@@ -2,6 +2,7 @@
 import { useRef } from 'react';
 import { Text, TextInput, SegmentedControl, NumberInput, Chip, Button } from '@mantine/core';
 import { hasLength, useForm } from '@mantine/form';
+import { useLocalStorage, readLocalStorageValue } from '@mantine/hooks';
 import { DownloadSimple } from '@phosphor-icons/react';
 import { getTopAlbums } from '@/app/lib/lastfm';
 import { createCollage } from '@/app/lib/collage';
@@ -11,11 +12,15 @@ export default function Form({ loadingProps, collageProps, setErrorMessage }) {
 	const { loading, setLoading } = loadingProps;
 	const { collage, setCollage } = collageProps;
 	const formValues = useRef(null);
+	const [localLogin, setLocalLogin] = useLocalStorage({
+		key: 'lastfm-login',
+		defaultValue: '',
+	});
 
 	const form = useForm({
 		mode: 'controlled',
 		initialValues: {
-			login: '',
+			login: readLocalStorageValue({ key: 'lastfm-login' }),
 			size: '3',
 			time: '7day',
 			height: '',
@@ -45,6 +50,7 @@ export default function Form({ loadingProps, collageProps, setErrorMessage }) {
 
 		setLoading(true);
 		formValues.current = form.getValues();
+		setLocalLogin(formValues.current.login);
 
 		// fetch data from last.fm api
 		const topAlbums = await getTopAlbums(formValues.current);
