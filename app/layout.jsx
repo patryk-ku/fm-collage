@@ -1,7 +1,7 @@
-import './globals.css';
+import { ColorSchemeScript, MantineProvider, createTheme, mantineHtmlProps } from '@mantine/core';
+import { cookies } from 'next/headers';
 import '@mantine/core/styles.css';
-
-import { ColorSchemeScript, MantineProvider, createTheme } from '@mantine/core';
+import './globals.css';
 
 export const metadata = {
 	title: '.fm collage creator',
@@ -80,14 +80,18 @@ const theme = createTheme({
 	},
 });
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+	// Get user theme from cookies
+	const themeCookie = (await cookies()).get('theme');
+	const colorScheme = themeCookie?.value || 'dark';
+
 	return (
-		<html lang='en'>
+		<html lang='en' {...mantineHtmlProps}>
 			<head>
-				<ColorSchemeScript defaultColorScheme='dark' />
+				<ColorSchemeScript defaultColorScheme={colorScheme} />
 			</head>
 			<body>
-				<MantineProvider defaultColorScheme='dark' theme={theme}>
+				<MantineProvider defaultColorScheme={colorScheme} theme={theme}>
 					{children}
 				</MantineProvider>
 			</body>
