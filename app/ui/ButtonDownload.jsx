@@ -1,6 +1,6 @@
+import { currentDateAsString } from '@/app/lib/utils';
 import { Button } from '@mantine/core';
 import { DownloadSimple } from '@phosphor-icons/react';
-import { currentDateAsString } from '@/app/lib/utils';
 
 export default function ButtonDownload({ formValues, collage }) {
 	const handleDownload = () => {
@@ -21,7 +21,7 @@ export default function ButtonDownload({ formValues, collage }) {
 		return (
 			<Button
 				variant='filled'
-				color='download.7'
+				color='download'
 				leftSection={<DownloadSimple weight='bold' size={20} />}
 				onClick={handleDownload}
 			>

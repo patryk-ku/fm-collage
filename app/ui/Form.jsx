@@ -1,13 +1,12 @@
 'use client';
-import { useRef } from 'react';
-import { Text, TextInput, SegmentedControl, NumberInput, Chip, Button } from '@mantine/core';
+import { Button, Chip, NumberInput, SegmentedControl, Text, TextInput } from '@mantine/core';
 import { hasLength, useForm } from '@mantine/form';
-import { useLocalStorage, readLocalStorageValue } from '@mantine/hooks';
-import ButtonDownload from '@/app/ui/ButtonDownload';
+import { readLocalStorageValue, useLocalStorage } from '@mantine/hooks';
+import { useRef } from 'react';
 
-// util functions
-import { getTopAlbums } from '@/app/lib/lastfm';
 import { createCollage } from '@/app/lib/collage';
+import { getTopAlbums } from '@/app/lib/lastfm';
+import ButtonDownload from '@/app/ui/ButtonDownload';
 
 export default function Form({ loadingProps, collageProps, setErrorMessage }) {
 	const { loading, setLoading } = loadingProps;
@@ -21,7 +20,7 @@ export default function Form({ loadingProps, collageProps, setErrorMessage }) {
 	const form = useForm({
 		mode: 'controlled',
 		initialValues: {
-			login: readLocalStorageValue({ key: 'lastfm-login' }),
+			login: readLocalStorageValue({ key: 'lastfm-login', defaultValue: '' }),
 			size: '3',
 			time: '7day',
 			height: '',
@@ -264,7 +263,7 @@ export default function Form({ loadingProps, collageProps, setErrorMessage }) {
 			</div>
 
 			<div className='mt-4 flex flex-row-reverse items-center gap-3'>
-				<Button type='submit' variant='filled' color='submit.7' loading={loading}>
+				<Button type='submit' variant='filled' color='submit' loading={loading}>
 					Create Collage
 				</Button>
 				<ButtonDownload formValues={formValues} collage={collage} />

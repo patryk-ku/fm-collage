@@ -1,9 +1,9 @@
 'use client';
-import { useState } from 'react';
-import Form from '@/app/ui/Form';
 import CollageImage from '@/app/ui/CollageImage';
+import Form from '@/app/ui/Form';
+import { useState } from 'react';
 
-import { Title, Text } from '@mantine/core';
+import { Text, Title } from '@mantine/core';
 
 export default function CollageCreator() {
 	const [loading, setLoading] = useState(false);
@@ -12,20 +12,26 @@ export default function CollageCreator() {
 
 	return (
 		<div className='grid grid-cols-[96vw] gap-8 sm:max-w-[1000px] sm:items-center md:grid-cols-[min-content_1fr] md:gap-12'>
-			<div className='flex flex-col justify-center gap-8'>
+			<div className='flex select-none flex-col justify-center gap-8'>
 				<div className='text-center'>
 					<Title order={1}>
-						<Text span inherit c='submit.6'>
+						<Text span inherit c='submit'>
 							.fm
 						</Text>{' '}
-						<Text
+						<Text span inherit c='primary.6'>
+							Collage
+						</Text>{' '}
+						<Text span inherit c='submit'>
+							Creator
+						</Text>{' '}
+						{/* <Text
 							span
 							inherit
 							variant='gradient'
-							gradient={{ from: 'submit.6', to: 'primary.4', deg: 74 }}
+							gradient={{ from: 'submit.6', to: 'primary.5', deg: 94 }}
 						>
 							Collage Creator
-						</Text>
+						</Text> */}
 					</Title>
 				</div>
 				<Form
