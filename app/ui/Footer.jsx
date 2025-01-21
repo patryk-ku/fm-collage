@@ -1,4 +1,4 @@
-import { Text, Button } from '@mantine/core';
+import { Button, Text } from '@mantine/core';
 import { GithubLogo } from '@phosphor-icons/react/dist/ssr';
 
 export default function Footer() {

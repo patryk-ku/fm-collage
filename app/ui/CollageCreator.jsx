@@ -1,9 +1,9 @@
 'use client';
-import { useState } from 'react';
-import Form from '@/app/ui/Form';
 import CollageImage from '@/app/ui/CollageImage';
+import Form from '@/app/ui/Form';
+import { useState } from 'react';
 
-import { Title, Text } from '@mantine/core';
+import { Text, Title } from '@mantine/core';
 
 export default function CollageCreator() {
 	const [loading, setLoading] = useState(false);

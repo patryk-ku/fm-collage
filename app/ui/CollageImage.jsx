@@ -1,5 +1,5 @@
 'use client';
-import { Skeleton, Image, Alert } from '@mantine/core';
+import { Alert, Image, Skeleton } from '@mantine/core';
 import { WarningCircle } from '@phosphor-icons/react';
 
 export default function CollageImage({ loading, collage, errorMessage }) {
@@ -17,7 +17,7 @@ export default function CollageImage({ loading, collage, errorMessage }) {
 		);
 	} else if (errorMessage) {
 		return (
-			<div className='border-red grid aspect-square w-full justify-items-stretch md:h-[592px]'>
+			<div className='grid aspect-square w-full justify-items-stretch border-red md:h-[592px]'>
 				<Alert
 					variant='light'
 					color='pink'

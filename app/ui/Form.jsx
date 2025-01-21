@@ -1,13 +1,13 @@
 'use client';
-import { useRef } from 'react';
-import { Text, TextInput, SegmentedControl, NumberInput, Chip, Button } from '@mantine/core';
-import { hasLength, useForm } from '@mantine/form';
-import { useLocalStorage, readLocalStorageValue } from '@mantine/hooks';
 import ButtonDownload from '@/app/ui/ButtonDownload';
+import { Button, Chip, NumberInput, SegmentedControl, Text, TextInput } from '@mantine/core';
+import { hasLength, useForm } from '@mantine/form';
+import { readLocalStorageValue, useLocalStorage } from '@mantine/hooks';
+import { useRef } from 'react';
 
+import { createCollage } from '@/app/lib/collage';
 // util functions
 import { getTopAlbums } from '@/app/lib/lastfm';
-import { createCollage } from '@/app/lib/collage';
 
 export default function Form({ loadingProps, collageProps, setErrorMessage }) {
 	const { loading, setLoading } = loadingProps;

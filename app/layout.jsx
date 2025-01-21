@@ -1,7 +1,7 @@
 import './globals.css';
 import '@mantine/core/styles.css';
 
-import { createTheme, ColorSchemeScript, MantineProvider } from '@mantine/core';
+import { ColorSchemeScript, MantineProvider, createTheme } from '@mantine/core';
 
 export const metadata = {
 	title: '.fm collage creator',
