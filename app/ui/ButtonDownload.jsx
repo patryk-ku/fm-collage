@@ -21,7 +21,7 @@ export default function ButtonDownload({ formValues, collage }) {
 		return (
 			<Button
 				variant='filled'
-				color='download.7'
+				color='download'
 				leftSection={<DownloadSimple weight='bold' size={20} />}
 				onClick={handleDownload}
 			>
