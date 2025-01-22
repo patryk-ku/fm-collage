@@ -20,18 +20,12 @@ importers:
       '@phosphor-icons/react':
         specifier: ^2.1.7
         version: 2.1.7(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
-      cpy-cli:
-        specifier: ^5.0.0
-        version: 5.0.0
       dotenv:
         specifier: ^16.4.7
         version: 16.4.7
       js-cookie:
         specifier: ^3.0.5
         version: 3.0.5
-      move-file-cli:
-        specifier: ^3.0.0
-        version: 3.0.0
       next:
         specifier: 15.1.5
         version: 15.1.5(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -41,13 +35,16 @@ importers:
       react-dom:
         specifier: ^19.0.0
         version: 19.0.0(react@19.0.0)
-      rimraf:
-        specifier: ^6.0.1
-        version: 6.0.1
     devDependencies:
       '@biomejs/biome':
         specifier: 1.9.4
         version: 1.9.4
+      cpy-cli:
+        specifier: ^5.0.0
+        version: 5.0.0
+      move-file-cli:
+        specifier: ^3.0.0
+        version: 3.0.0
       postcss:
         specifier: ^8.5.1
         version: 8.5.1
@@ -57,6 +54,9 @@ importers:
       postcss-simple-vars:
         specifier: ^7.0.1
         version: 7.0.1(postcss@8.5.1)
+      rimraf:
+        specifier: ^6.0.1
+        version: 6.0.1
       tailwindcss:
         specifier: ^3.4.17
         version: 3.4.17
