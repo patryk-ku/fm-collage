@@ -1,6 +1,6 @@
 {
 	"name": "fm-collage",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"private": true,
 	"scripts": {
 		"preinstall": "npx only-allow pnpm",
@@ -33,9 +33,6 @@
 		"tailwindcss": "^4.1.13"
 	},
 	"pnpm": {
-		"onlyBuiltDependencies": [
-			"@biomejs/biome",
-			"sharp"
-		]
+		"onlyBuiltDependencies": ["@biomejs/biome", "sharp"]
 	}
 }
