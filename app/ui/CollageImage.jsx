@@ -1,6 +1,6 @@
 'use client';
 import { Alert, Image, Skeleton } from '@mantine/core';
-import { WarningCircle } from '@phosphor-icons/react';
+import { WarningCircleIcon } from '@phosphor-icons/react';
 
 export default function CollageImage({ loading, collage, errorMessage }) {
 	if (collage) {
@@ -23,7 +23,7 @@ export default function CollageImage({ loading, collage, errorMessage }) {
 					color='pink'
 					radius='md'
 					title='Error'
-					icon={<WarningCircle size={18} weight='bold' />}
+					icon={<WarningCircleIcon size={18} weight='bold' />}
 					styles={{
 						root: {
 							width: '100%',

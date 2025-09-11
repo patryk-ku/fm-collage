@@ -1,6 +1,6 @@
 import ThemeSwitch from '@/app/ui/ThemeSwitch';
 import { Button, Text } from '@mantine/core';
-import { GithubLogo } from '@phosphor-icons/react/dist/ssr';
+import { GithubLogoIcon } from '@phosphor-icons/react/dist/ssr';
 
 export default function Footer() {
 	return (
@@ -13,7 +13,7 @@ export default function Footer() {
 				radius='lg'
 				variant='default'
 				size='compact-xs'
-				leftSection={<GithubLogo weight='fill' size={14} />}
+				leftSection={<GithubLogoIcon weight='fill' size={14} />}
 				href='https://github.com/patryk-ku/fm-collage'
 				target='_blank'
 			>
