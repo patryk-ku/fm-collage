@@ -31,10 +31,10 @@ export default function ThemeSwitch() {
 					size='sm'
 					color='blue'
 					onLabel={
-						<Sun size={16} weight='fill' className='text-[--mantine-color-yellow-4]' />
+						<Sun size={16} weight='fill' className='text-(--mantine-color-yellow-4)' />
 					}
 					offLabel={
-						<Moon size={16} weight='fill' className='text-[--mantine-color-indigo-4]' />
+						<Moon size={16} weight='fill' className='text-(--mantine-color-indigo-4)' />
 					}
 					checked={computedColorScheme === 'dark' ? false : true}
 					onClick={toggleTheme}
