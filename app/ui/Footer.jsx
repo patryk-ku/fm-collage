@@ -6,7 +6,7 @@ export default function Footer() {
 	return (
 		<footer className='flex flex-row items-center justify-center gap-4 pb-1'>
 			<Text size='xs' fw={500}>
-				Patryk Kurdziel © 2024-2025
+				Patryk Kurdziel © 2024-{new Date().getFullYear()}
 			</Text>
 			<Button
 				component='a'
