@@ -42,22 +42,22 @@ npm run start
 
 ### Standalone export and Node.js hosting without acces to terminal/script execution (e.g. Phusion Passenger)
 
-When building applications using the standard method, the app folder will be over ~700 MB in size. This is a lot and can easily be reduced to a reasonable ~20 MB using [Next.js standalone export](https://nextjs.org/docs/pages/api-reference/next-config-js/output) option. Using this method also allows the site to be served using hosting that use Phusion Passenger or other similar solution.
+> [!IMPORTANT]
+> The export script is written in bash, so it requires a UNIX-like system or WSL.
+
+When building applications using the standard method, the app folder will be over ~700 MB in size. This is a lot and can easily be reduced to a reasonable ~20 MB using [Next.js standalone export](https://nextjs.org/docs/pages/api-reference/next-config-js/output) option. Using this method also allows the site to be served using hosting that use Phusion Passenger or other similar solutions.
 
 Do everything as for a normal installation but instead of the `npm run build` use:
 
 ```sh
-npm run export-standalone
+npm run export
 ```
 
-The built app files will be waiting for you in the `dist` folder. To start server simply run:
+The built app files will be waiting for you in the `dist` folder, and additionally, the packed files will be in a zip archive in the `export` folder. To start server simply run:
 
 ```sh
 node app.js
 ```
-
-> [!CAUTION]
-> This method will also export your .env file to the dist folder.
 
 ## Development
 
