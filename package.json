@@ -18,7 +18,7 @@
 		"@tailwindcss/postcss": "^4.1.13",
 		"dotenv": "^17.2.2",
 		"js-cookie": "^3.0.5",
-		"next": "15.5.3",
+		"next": "15.5.7",
 		"react": "^19.1.1",
 		"react-dom": "^19.1.1"
 	},
